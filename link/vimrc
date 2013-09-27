@@ -1,0 +1,239 @@
+" General {
+set encoding=utf-8
+set backspace=indent,eol,start
+set nocompatible
+let mapleader = ','
+
+set showcmd         " show current command input
+set hidden          " does not force you to write or undo on :e
+set autoread
+set autowrite
+set noswapfile
+set nobackup
+set nowritebackup
+set history=200
+set nrformats=      " use decimal notion rather then octal 07+01=08
+
+set scrolloff=2
+noremap j gj
+noremap k gk
+noremap <c-e> 2<c-e>
+noremap <c-y> 2<c-y>
+
+set autoindent
+set tabstop=2       " width of a tab char
+set shiftwidth=2    " tunes amount of spaces
+set softtabstop=2   " tunes amount of spaces for indentation (< >)
+set expandtab       " spaces in place of tab chars
+set nowrap
+set linebreak
+
+set gdefault        " set /g as default
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+nnoremap <silent><C-C> :noh<cr>
+
+set foldmethod=marker
+set foldlevel=100
+set nofoldenable
+set foldmarker={,}
+
+syntax on
+colorscheme licorice
+set cursorline
+
+" }
+" Config {
+
+" GUI Related.
+if has("gui_running")
+  set guioptions-=T " Disable toolbar
+  set guioptions-=e " don't use gui tab apperance
+  " set guioptions-=r " don't show scrollbars
+  set guioptions-=l " don't show scrollbars
+  set guioptions-=R " don't show scrollbars
+  set guioptions-=L " don't show scrollbars
+  set guicursor+=a:blinkon0 " disable blinking cursor
+  map <2-LeftMouse> *
+endif
+
+" Windows stuff
+if has("gui_win32")
+  set guifont=Consolas:h9
+  language messages en
+endif
+
+" Change cursor in insert mode for iterm
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+" Make star search lovely
+" http://www.vim.org/scripts/script.php?script_id=4335
+function! s:VStarsearch_searchCWord()
+	let wordStr = expand("<cword>")
+	if strlen(wordStr) == 0
+		echohl ErrorMsg
+		echo 'E348: No string under cursor'
+		echohl NONE
+		return
+	endif
+	if wordStr[0] =~ '\<'
+		let @/ = '\<' . wordStr . '\>'
+	else
+		let @/ = wordStr
+	endif
+	let savedUnnamed = @"
+	let savedS = @s
+	normal! "syiw
+	if wordStr != @s
+		normal! w
+	endif
+	let @s = savedS
+	let @" = savedUnnamed
+endfunction
+function! s:VStarsearch_searchVWord()
+	let savedUnnamed = @"
+	let savedS = @s
+	normal! gv"sy
+	let @/ = '\V' . substitute(escape(@s, '\'), '\n', '\\n', 'g')
+	let @s = savedS
+	let @" = savedUnnamed
+endfunction
+nnoremap <silent> * :call <SID>VStarsearch_searchCWord()<CR>:set hls<CR>
+vnoremap <silent> * :<C-u>call <SID>VStarsearch_searchVWord()<CR>:set hls<CR>
+
+" reload VIMRC
+nnoremap <silent> <leader>rc :so $MYVIMRC<cr>:noh<cr>
+
+" Spell-Menu dropdown
+:nnoremap <leader>s a<C-X><C-S>
+
+" quit :help with q
+function! QuitWithQ()
+  if &buftype == 'help'
+    nnoremap <buffer> <silent> q :q<cr>
+  endif
+endfunction
+autocmd FileType help exe QuitWithQ()
+
+" Auto reload vimrc on :write.
+if has("autocmd")
+  autocmd! bufwritepost vimrc source $MYVIMRC
+endif
+
+" Make sure Vim returns to the same line when you reopen a file.
+augroup line_return
+  au!
+  au BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \ execute 'normal! g`"zvzz' |
+    \ endif
+augroup END
+
+" <C+S+P> to show element highlight group.
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" Resize splits when the window is resized
+au VimResized * :wincmd =
+
+" Only show cursorline in the current window 
+augroup cline
+  au!
+  au WinLeave * set nocursorline
+  au WinEnter * set cursorline
+augroup END
+
+" Toggle between text/code mode.
+let g:textModeEnabled = 0
+function! TextModeToggle()
+  if g:textModeEnabled
+    setlocal nospell
+    setlocal nowrap
+    let g:textModeEnabled = 0
+  else
+    " if lang == 'sv'
+    "   setlocal spelllang=sv
+    " endif
+    setlocal spell
+    setlocal wrap
+    let g:textModeEnabled = 1
+  endif
+endfunction
+nnoremap <leader>t :call TextModeToggle()<cr>
+" nnoremap <leader>te :call TextModeToggle(en)<cr>
+" nnoremap <leader>ts :call TextModeToggle(sv)<cr>
+
+" }
+" Plugins {
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+Bundle 'scrooloose/nerdtree'
+nnoremap <leader>n :NERDTreeToggle<cr>
+let NERDTreeQuitOnOpen=1
+let NERDTreeMinimalUI=1
+
+Bundle 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = 'context'      " make supertab choose
+let g:SuperTabContextDefaultCompletionType = '<c-n>' " fallback
+let g:SuperTabMappingForward = '<c-n>'               " don't use <tab>
+let g:SuperTabMappingBackward = '<c-p>'
+
+Bundle 'kien/ctrlp.vim'
+let g:ctrlp_map = '<c-q>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_status_func = {"." : ""}
+
+Bundle 'scrooloose/syntastic'
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+
+Bundle 'pangloss/vim-javascript'
+
+Bundle 'othree/html5.vim'
+
+" Bundle 'hail2u/vim-css3-syntax'
+
+Bundle 'tpope/vim-commentary'
+
+Bundle 'vimwiki/vimwiki'
+let g:vimwiki_folding = 'expr'
+nnoremap <leader>w/ :VimwikiSearch 
+
+let g:vimwiki_list = [{
+      \ 'path': $HOME.'/.vimwiki/wiki/',
+      \ 'path_html': $HOME.'/.vimwiki/html/',
+      \ 'template_path': $HOME.'/.vimwiki/html/assets/',
+      \ 'template_default': 'default',
+      \ 'template_ext': 'tpl',
+      \ 'nested_syntaxes': {
+        \ 'c': 'c',
+        \ 'cpp': 'c++',
+        \ 'cs': 'c#',
+        \ 'java': 'java',
+        \ 'js': 'javascript',
+        \ 'css': 'css',
+        \ 'html': 'html',
+        \ 'sql': 'sql'},
+      \ 'auto_export': 0}]
+
+Bundle 'vim-scripts/hexHighlight.vim'
+
+filetype plugin indent on
+" }
