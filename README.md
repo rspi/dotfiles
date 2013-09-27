@@ -11,6 +11,13 @@ And then just run:
 bash -c "$(curl -fsSL https://raw.github.com/rspi/dotfiles/master/bin/dotfiles)" && source ~/.bashrc
 ```
 
+For vimrc on windows:
+
+```
+mklink /J %USERPROFILE%\.vim %USERPROFILE%\dotfiles\link\vim
+mklink /h %USERPROFILE%\.vimrc %USERPROFILE%\dotfiles\link\vimrc
+```
+
 ## Thanks
 <https://github.com/cowboy/dotfiles>
 .. and many other dotfile repos.
