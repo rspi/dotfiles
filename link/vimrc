@@ -221,7 +221,7 @@ let g:vimwiki_list = [{
       \ 'path_html': $HOME.'/.vimwiki/html/',
       \ 'template_path': $HOME.'/.vimwiki/html/assets/',
       \ 'template_default': 'default',
-      \ 'template_ext': 'tpl',
+      \ 'template_ext': '.tpl',
       \ 'nested_syntaxes': {
         \ 'c': 'c',
         \ 'cpp': 'c++',
