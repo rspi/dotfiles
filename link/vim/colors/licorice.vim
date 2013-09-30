@@ -111,3 +111,20 @@ hi Todo          guifg=#fcaf3e guibg=bg               ctermfg=3  ctermbg=none
 hi Keyword       guifg=#ffffff                        ctermfg=15
 hi Special       guifg=#ffffff                        ctermfg=15
 hi Error         guifg=#ffffff guibg=#ef2929          ctermfg=15 ctermbg=1
+
+" --------------------------------------------------------------------------------------------
+
+" HTML
+hi htmlTag       guifg=#888a85                        ctermfg=13
+hi htmlTagName   guifg=#cccccc                        ctermfg=7
+hi link htmlEndTag htmlTag
+hi link htmlSpecialTagName htmlTagName
+
+" JavaScript
+hi link javaScriptBraces htmlTag
+
+" CSS
+hi link cssBraces htmlTag
+
+" Vimwiki
+hi link VimwikiPre htmlTag
