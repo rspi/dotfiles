@@ -158,23 +158,25 @@ augroup END
 
 " Toggle between text/code mode.
 let g:textModeEnabled = 0
-function! TextModeToggle()
-  if g:textModeEnabled
+function! TextModeToggle(lang)
+  if g:textModeEnabled && a:lang == 'none'
     setlocal nospell
     setlocal nowrap
     let g:textModeEnabled = 0
   else
-    " if lang == 'sv'
-    "   setlocal spelllang=sv
-    " endif
+    if a:lang == 'sv'
+      setlocal spelllang=sv
+    else
+      setlocal spelllang=en
+    endif
     setlocal spell
     setlocal wrap
     let g:textModeEnabled = 1
   endif
 endfunction
-nnoremap <leader>t :call TextModeToggle()<cr>
-" nnoremap <leader>te :call TextModeToggle(en)<cr>
-" nnoremap <leader>ts :call TextModeToggle(sv)<cr>
+nnoremap <leader>t :call TextModeToggle("none")<cr>
+nnoremap <leader>te :call TextModeToggle("en")<cr>
+nnoremap <leader>ts :call TextModeToggle("sv")<cr>
 
 " }
 " Plugins {
