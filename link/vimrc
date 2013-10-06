@@ -233,7 +233,7 @@ let g:vimwiki_list = [{
         \ 'css': 'css',
         \ 'html': 'html',
         \ 'sql': 'sql'},
-      \ 'auto_export': 0}]
+      \ 'auto_export': 1}]
 
 Bundle 'vim-scripts/hexHighlight.vim'
 
