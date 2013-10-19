@@ -27,8 +27,10 @@ export PATH
 
 alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ip="ipconfig getifaddr en1"
-alias week='date +%V'
-alias cl='clear'
+alias week="date +%V"
+alias cl="clear"
+alias todo="vim +VimwikiIndex +'VimwikiGoto todo'"
+alias wiki="vim +VimwikiIndex"
 
 # Start an HTTP server from a directory, optionally specifying the port
 httpserver() {
