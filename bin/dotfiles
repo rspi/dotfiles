@@ -82,7 +82,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
   # Install Homebrew
   if [[ ! "$(type -P brew)" ]]; then
     e_msg "Installing Homebrew.."
-    true | ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+    true | ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
   fi
 
   if [[ ! "$(type -P brew)" ]]; then
