@@ -19,6 +19,7 @@ noremap j gj
 noremap k gk
 noremap <c-e> 2<c-e>
 noremap <c-y> 2<c-y>
+set mouse=nicr
 
 set autoindent
 set tabstop=2       " width of a tab char
