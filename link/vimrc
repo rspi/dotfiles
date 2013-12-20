@@ -178,6 +178,7 @@ nnoremap <leader>t :call TextModeToggle("none")<cr>
 nnoremap <leader>te :call TextModeToggle("en")<cr>
 nnoremap <leader>ts :call TextModeToggle("sv")<cr>
 
+
 " }
 " Plugins {
 filetype off
@@ -217,6 +218,7 @@ Bundle 'tpope/vim-commentary'
 Bundle 'vimwiki/vimwiki'
 let g:vimwiki_folding = 'expr'
 nnoremap <leader>w/ :VimwikiSearch 
+autocmd BufNewFile,BufRead *.wiki call TextModeToggle("en")
 
 let g:vimwiki_list = [{
       \ 'path': $HOME.'/.vimwiki/wiki/',
