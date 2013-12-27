@@ -235,6 +235,9 @@ let g:vimwiki_list = [{
         \ 'js': 'javascript',
         \ 'css': 'css',
         \ 'html': 'html',
+        \ 'sh': 'sh',
+        \ 'xml': 'xml',
+        \ 'haskell': 'haskell',
         \ 'sql': 'sql'},
       \ 'auto_export': 1}]
 
