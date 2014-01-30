@@ -49,6 +49,7 @@ hi LineNr        guifg=#3f4b4d guibg=#1e2426          ctermfg=14 ctermbg=none
 hi MoreMsg       guifg=#729fcf                        ctermfg=10
 hi Question      guifg=#8ae234               gui=none ctermfg=10
 hi WildMenu      guifg=#cccccc guibg=#191f21          ctermfg=7  ctermbg=0
+hi SignColumn                  guibg=#1e2426                     ctermbg=none
 
 " Search
 hi IncSearch     guifg=#fcaf3e guibg=#444444          ctermfg=3  ctermbg=8
