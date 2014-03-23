@@ -151,11 +151,13 @@ endfunc
 au VimResized * :wincmd =
 
 " Only show cursorline in the current window 
-augroup cline
-  au!
-  au WinLeave * set nocursorline
-  au WinEnter * set cursorline
-augroup END
+" augroup cline
+"   au!
+"   au WinLeave * set nocursorline
+"   au WinEnter * set cursorline
+" augroup END
+
+" command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Toggle between text/code mode.
 let g:textModeEnabled = 0
@@ -199,14 +201,18 @@ let g:SuperTabContextDefaultCompletionType = '<c-n>' " fallback
 let g:SuperTabMappingForward = '<c-n>'               " don't use <tab>
 let g:SuperTabMappingBackward = '<c-p>'
 
+Bundle 'rking/ag.vim'
+
+Bundle 'tpope/vim-fugitive'
+
 Bundle 'kien/ctrlp.vim'
-let g:ctrlp_map = '<c-q>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_status_func = {"." : ""}
+let g:ctrlp_cmd = 'CtrlPLastMode'
 
 Bundle 'scrooloose/syntastic'
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_enable_signs = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_error_symbol = 'x'
+let g:syntastic_warning_symbol = '!'
 
 Bundle 'pangloss/vim-javascript'
 
