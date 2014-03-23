@@ -3,6 +3,7 @@
 # PATH                                                                        #
 ###############################################################################
 
+# remember that /etc/paths might override this.
 push_path(){
   if ! echo $PATH | egrep -q "(^|:)$1($|:)" ; then
     if [ "$2" = "after" ] ; then
@@ -17,9 +18,13 @@ push_path(){
 push_path ~/.dotfiles/bin
 
 # sql
-push_path /usr/local/mysql/bin
+ push_path /usr/local/mysql/bin
+
+# local/bin
+push_path /usr/local/bin
 
 export PATH 
+
 
 ###############################################################################
 # Alias and functions                                                         #
@@ -31,6 +36,7 @@ alias week="date +%V"
 alias cl="clear"
 alias todo="vim +VimwikiIndex +'VimwikiGoto todo'"
 alias wiki="vim +VimwikiIndex"
+alias ..="cd .."
 
 # Start an HTTP server from a directory, optionally specifying the port
 httpserver() {
@@ -50,19 +56,39 @@ search() {
 # Command prompt stuff                                                        #
 ###############################################################################
 
-export CLICOLOR=1
-# PS1='\[\e[1;36m\]\W\[\e[m\] \[\e[1;36m\]\$\[\e[m\] \[\e[0;37m\]'
+# bash completion
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+  . `brew --prefix`/etc/bash_completion
+fi
 
-function prompt_git {
-  status="$(git status 2>/dev/null | awk '/# On branch/ {print $4}')"
-  if [[ $status ]]; then
-    echo "[$status]"
+function _git_prompt() {
+local git_status="`git status -unormal 2>&1`"
+if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
+  if [[ "$git_status" =~ nothing\ to\ commit ]]; then
+    local ansi=32
+  elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
+    local ansi=33
   else
-    echo ''
+    local ansi=31
   fi
+  if [[ "$git_status" =~ On\ branch\ ([^[:space:]]+) ]]; then
+    branch=${BASH_REMATCH[1]}
+    # test "$branch" != master || branch=' '
+  else
+    # Detached HEAD.  (branch=HEAD is a faster alternative.)
+    branch="(`git describe --all --contains --abbrev=4 HEAD 2> /dev/null ||
+      echo HEAD`)"
+  fi
+  # echo -n '\[\e[0;37;'"$ansi"';1m\]'"$branch"'\[\e[0m\] '
+  echo -n '\[\e[0;37;'"$ansi"';1m\]'"$branch"'\[\e[0m\] '
+fi
 }
 
-export PS1="\$(prompt_git) \[\e[1;34m\]\W\[\e[m\] \[\e[0;37m\]❯ "
+function _prompt_command() {
+  PS1="`_git_prompt`"'\[\e[1;34m\]\W\[\e[m\] \[\e[0;37m\]❯ '
+}
+
+PROMPT_COMMAND=_prompt_command
 
 # Entries beginning with space aren't added into history, and duplicate
 # entries will be erased (leaving the most recent entry).

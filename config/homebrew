@@ -5,9 +5,9 @@
 # list of programs to install
 toInstall=(
   node
-  ranger
-  tree
   tmux
+  bash-completion
+  the_silver_searcher
 )
 
 already_installed() {
@@ -31,14 +31,3 @@ for i in ${toInstall[@]} ; do
   fi
 done
 
-# brew-cask for installing osx apps
-# if ! already_installed brew-cask; then
-#   e_msg 'installing brew-cask'
-#   brew tap phinze/homebrew-cask
-#   brew install brew-cask
-#   if [ ! $? -eq 0 ];then
-#     e_error 'There was a problem installing brew-cask.'
-#   else
-#     e_success 'brew-cask was successfully installed'
-#   fi
-# fi
