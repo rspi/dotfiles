@@ -1,3 +1,4 @@
 /backups
+/link/vim/spell/
 /link/vim/bundle/*
 !/link/vim/bundle/vundle
