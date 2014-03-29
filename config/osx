@@ -1,34 +1,27 @@
 #!/usr/bin/env bash
 
-# Disable the sound effects on boot
-sudo nvram SystemAudioVolume=" "
-
-# Menu bar: disable transparency
+e_msg "Menu bar: disable transparency"
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
-# Menu bar: show remaining battery in percentage 
+e_msg "Menu bar: show remaining battery in percentage "
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 defaults write com.apple.menuextra.battery ShowTime -string "NO"
 
-# Finder: show all filename extensions
+e_msg "Finder: show all filename extensions"
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
-# Disable the “Are you sure you want to open this application?” dialog
+e_msg "System: Disable the “Are you sure you want to open this application?” dialog"
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
-# Enable full keyboard access for all controls
-# (e.g. enable Tab in modal dialogs)
+e_msg "System: Enable full keyboard access for all controls"
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
-# Only use UTF-8 in Terminal.app
+e_msg "System: Only use UTF-8 in Terminal.app"
 defaults write com.apple.terminal StringEncodings -array 4
 
-# Use my licorice color scheme
-open "$HOME/.dotfiles/config/licorice.terminal"
-sleep 1 # Wait a bit to make sure the theme is loaded
-defaults write com.apple.terminal "Default Window Settings" -string "licorice"
-defaults write com.apple.terminal "Startup Window Settings" -string "licorice"
+e_msg "System: Disable the sound effects on boot"
+sudo nvram SystemAudioVolume=" "
 
-# Disable “natural” (Lion-style) scrolling
+e_msg "System: Disable “natural” (Lion-style) scrolling"
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
