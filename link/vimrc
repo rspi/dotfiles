@@ -251,5 +251,8 @@ let g:vimwiki_list = [{
 
 Bundle 'vim-scripts/hexHighlight.vim'
 
+Bundle 'rspi/silver.vim'
+let g:ag_command="ag --smart-case"
+
 filetype plugin indent on
 " }
