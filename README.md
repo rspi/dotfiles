@@ -18,6 +18,3 @@ mklink /J %USERPROFILE%\.vim %USERPROFILE%\dotfiles\link\vim
 mklink /h %USERPROFILE%\.vimrc %USERPROFILE%\dotfiles\link\vimrc
 ```
 
-## Thanks
-<https://github.com/cowboy/dotfiles>
-.. and many other dotfile repos.
