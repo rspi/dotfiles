@@ -18,7 +18,8 @@ elif [[ $1 == join ]]; then
   if [[ $2 ]]; then
     ssid=$@
   else
-    # if user forgot to enter ssid
+
+  # if user didn't enter a ssid
   read -p "ssid: "
   ssid=$REPLY
   fi

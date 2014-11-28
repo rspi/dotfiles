@@ -31,12 +31,14 @@ export PATH
 ###############################################################################
 
 alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias ip="ipconfig getifaddr en1"
+alias ip="ipconfig getifaddr en0"
+alias ip1="ipconfig getifaddr en1"
 alias week="date +%V"
 alias cl="clear"
 alias todo="vim +VimwikiIndex +'VimwikiGoto todo'"
 alias wiki="vim +VimwikiIndex"
 alias ..="cd .."
+alias json='python -mjson.tool'
 
 # Start an HTTP server from a directory, optionally specifying the port
 httpserver() {
@@ -93,8 +95,9 @@ PROMPT_COMMAND=_prompt_command
 # Entries beginning with space aren't added into history, and duplicate
 # entries will be erased (leaving the most recent entry).
 export HISTCONTROL="ignorespace:erasedups"
+
 # Give history timestamps.
 export HISTTIMEFORMAT="[%F %T] "
-# Lots o' history.
+
 export HISTSIZE=10000
 export HISTFILESIZE=10000
