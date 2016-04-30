@@ -19,6 +19,7 @@ noremap j gj
 noremap k gk
 noremap <c-e> 2<c-e>
 noremap <c-y> 2<c-y>
+imap <C-C> <esc>
 set mouse=nicr
 
 set autoindent
@@ -118,11 +119,12 @@ nnoremap <silent> <leader>rc :so $MYVIMRC<cr>:noh<cr>
 
 " quit :help with q
 function! QuitWithQ()
-  if &buftype == 'help'
+  if &buftype == 'help' || &filetype == 'godoc'
     nnoremap <buffer> <silent> q :q<cr>
   endif
 endfunction
 autocmd FileType help exe QuitWithQ()
+autocmd FileType godoc exe QuitWithQ()
 
 " Auto reload vimrc on :write.
 if has("autocmd")
@@ -138,8 +140,11 @@ augroup line_return
     \ endif
 augroup END
 
-" <C+S+P> to show element highlight group.
-nmap <C-S-P> :call <SID>SynStack()<CR>
+" close preview window for autocomplete
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+" <C+S+X> to show element highlight group.
+nmap <C-S-X> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
     return
@@ -150,15 +155,8 @@ endfunc
 " Resize splits when the window is resized
 au VimResized * :wincmd =
 
-" Only show cursorline in the current window 
-" augroup cline
-"   au!
-"   au WinLeave * set nocursorline
-"   au WinEnter * set cursorline
-" augroup END
-
 " command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
-cnoremap W w !sudo tee > /dev/null %
+cnoremap WW w !sudo tee > /dev/null %
 
 " Toggle between text/code mode.
 let g:textModeEnabled = 0
@@ -191,6 +189,12 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
+Bundle 'tpope/vim-fugitive'
+Bundle 'pangloss/vim-javascript'
+Bundle 'elixir-lang/vim-elixir'
+Bundle 'othree/html5.vim'
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'vim-scripts/hexHighlight.vim'
 
 Bundle 'scrooloose/nerdtree'
 nnoremap <leader>n :NERDTreeToggle<cr>
@@ -204,10 +208,6 @@ let g:SuperTabContextDefaultCompletionType = '<c-n>' " fallback
 let g:SuperTabMappingForward = '<c-n>'               " don't use <tab>
 let g:SuperTabMappingBackward = '<c-p>'
 
-Bundle 'rking/ag.vim'
-
-Bundle 'tpope/vim-fugitive'
-
 Bundle 'kien/ctrlp.vim'
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_custom_ignore = {
@@ -219,22 +219,26 @@ let g:ctrlp_custom_ignore = {
 Bundle 'scrooloose/syntastic'
 let g:syntastic_enable_signs = 0
 let g:syntastic_check_on_open = 1
+let g:syntastic_aggregate_errors = 1
 let g:syntastic_error_symbol = 'x'
 let g:syntastic_warning_symbol = '!'
-let g:syntastic_javascript_checkers = ['eslint']
-
+autocmd FileType javascript let b:syntastic_checkers = ['eslint']
+let g:syntastic_go_checkers = ['go', 'golint', 'govet']
 
 Bundle 'ElmCast/elm-vim'
 let g:elm_detailed_complete = 1
 au FileType elm nmap <silent><buffer> K <Plug>(elm-show-docs)
 
-Bundle 'pangloss/vim-javascript'
-
 Bundle 'fatih/vim-go'
-
-Bundle 'othree/html5.vim'
-
-Bundle 'hail2u/vim-css3-syntax'
+let g:go_fmt_command = "goimports"
+au FileType go nmap <Leader>gi <Plug>(go-info)
+au FileType go nmap <leader>gg <Plug>(go-run)
+au FileType go nmap <Leader>gr <Plug>(go-rename)
+au FileType go nmap <Leader>gd <Plug>(go-def-tab)
+au FileType go nmap <leader>gb <Plug>(go-build)
+au FileType go nmap <leader>gt <Plug>(go-test)
+au FileType go nmap <leader>gl <Plug>(go-metalinter)
+au FileType go nmap <Leader>gh <Plug>(go-doc-browser)
 
 Bundle 'tpope/vim-commentary'
 autocmd FileType apache setlocal commentstring=#%s
@@ -266,10 +270,15 @@ let g:vimwiki_list = [{
         \ 'elm': 'elm'},
       \ 'auto_export': 1}]
 
-Bundle 'vim-scripts/hexHighlight.vim'
 
 Bundle 'rspi/silver.vim'
 let g:ag_command="ag --smart-case"
+
+Bundle 'rspi/jira-ids.vim'
+let g:jira_username='rasmuss'
+let g:jira_projects=['bw', 'igl']
+let g:jira_statuses=["In Progress", "In Testing", "Ready for Testing"]
+let g:jira_url='https://jira.sst.mgsops.net'
 
 filetype plugin indent on
 " }
