@@ -1,54 +1,79 @@
 # Compiled source #
 ###################
 *.com
+!*.com/
 *.class
+!*.class/
 *.dll
+!*.dll/
 *.exe
+!*.exe/
 *.o
+!*.o/
 *.so
+!*.so/
 
 # Packages #
 ############
 *.7z
+!*.7z/
 *.jar
+!*.jar/
 *.rar
+!*.rar/
 *.zip
+!*.zip/
 *.gz
+!*.gz/
 *.bzip
+!*.bzip/
 *.xz
+!*.zz/
 *.lzma
+!*.lzma/
 
 #packing-only formats
 *.iso
+!*.iso/
 *.tar
+!*.tar/
 
 #package management formats
 *.dmg
+!*.dmg/
 *.xpi
+!*.xpi/
 *.gem
+!*.gem/
 *.egg
+!*.egg/
 *.deb
+!*.deb/
 *.rpm
+!*.rpm/
 
 # Logs and databases #
 ######################
 *.log
+!*.log/
 *.sql
+!*.sql/
 *.sqlite
+!*.sqlite/
 
 # OS generated files #
 ######################
 .DS_Store
 
 # Thumbnails
-._*
+# ._*
 
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
 
 # Windows image file caches
-Thumbs.db 
+Thumbs.db
 
 # Folder config file
 Desktop.ini
