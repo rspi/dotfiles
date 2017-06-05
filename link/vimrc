@@ -144,7 +144,7 @@ augroup END
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " <C+S+X> to show element highlight group.
-nmap <C-S-X> :call <SID>SynStack()<CR>
+nmap <C-S-B> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
     return
@@ -191,7 +191,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'pangloss/vim-javascript'
-Bundle 'elixir-lang/vim-elixir'
 Bundle 'othree/html5.vim'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'vim-scripts/hexHighlight.vim'
@@ -211,8 +210,8 @@ let g:SuperTabMappingBackward = '<c-p>'
 Bundle 'kien/ctrlp.vim'
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)|node_modules$',
-  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)|elm-stuff|node_modules$',
+  \ 'file': '\v\.(exe|so|dll|a)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
@@ -223,14 +222,16 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_error_symbol = 'x'
 let g:syntastic_warning_symbol = '!'
 autocmd FileType javascript let b:syntastic_checkers = ['eslint']
-let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+let g:syntastic_go_checkers = ['go', 'govet']
 
 Bundle 'ElmCast/elm-vim'
+let g:elm_setup_keybindings = 0
 let g:elm_detailed_complete = 1
+let g:elm_format_autosave = 1
 au FileType elm nmap <silent><buffer> K <Plug>(elm-show-docs)
 
 Bundle 'fatih/vim-go'
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "gofmt"
 au FileType go nmap <Leader>gi <Plug>(go-info)
 au FileType go nmap <leader>gg <Plug>(go-run)
 au FileType go nmap <Leader>gr <Plug>(go-rename)
