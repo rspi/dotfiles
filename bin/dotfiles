@@ -54,11 +54,11 @@ backup_dir="$HOME/.dotfiles/backups/$(date "+%Y_%m_%d-%H_%M_%S")/"
 # OSX
 if [[ "$OSTYPE" =~ ^darwin ]]; then
 
-  if [[ ! "$(type -P gcc)" ]]; then
-    e_error "Xcode should be installed. It's not. Aborting."
-    e_msg 'https://developer.apple.com/downloads/index.action?=command%20line%20tools'
-    exit 1
-  fi
+  # if [[ ! "$(type -P gcc)" ]]; then
+  #   e_error "Xcode should be installed. It's not. Aborting."
+  #   e_msg 'https://developer.apple.com/downloads/index.action?=command%20line%20tools'
+  #   exit 1
+  # fi
 
   # Ask about config options upfront
   read -p "Configure osx system settings? (y/n) " -n 1
