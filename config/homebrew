@@ -5,9 +5,11 @@
 # list of programs to install
 toInstall=(
   node
+  vim
   tmux
   bash-completion
   the_silver_searcher
+  jq
 )
 
 already_installed() {

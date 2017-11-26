@@ -17,9 +17,6 @@ push_path(){
 # bin
 push_path ~/.dotfiles/bin
 
-# sql
- push_path /usr/local/mysql/bin
-
 # local/bin
 push_path /usr/local/bin
 
@@ -30,6 +27,7 @@ export PATH
 # Alias and functions                                                         #
 ###############################################################################
 
+alias vi="vim"
 alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ip="ipconfig getifaddr en0"
 alias ip1="ipconfig getifaddr en1"
@@ -39,6 +37,8 @@ alias todo="vim +VimwikiIndex +'VimwikiGoto todo'"
 alias wiki="vim +VimwikiIndex"
 alias ..="cd .."
 alias json='python -mjson.tool'
+alias cd='cd -P'
+
 
 # Start an HTTP server from a directory, optionally specifying the port
 httpserver() {
