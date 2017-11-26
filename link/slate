@@ -63,6 +63,7 @@ bind j:${hyper} focus down
 # App bindings
 bind i:${hyper} focus 'iTerm2' 
 bind m:${hyper} focus 'Mail' 
+bind n:${hyper} focus 'Calendar' 
 bind b:${hyper} focus 'Google Chrome'
 bind f:${hyper} focus 'Firefox'
 bind f:${hyper} focus 'Finder' 

@@ -2,6 +2,7 @@
 set encoding=utf-8
 set backspace=indent,eol,start
 set nocompatible
+set exrc
 let mapleader = ','
 
 set showcmd         " show current command input
@@ -15,7 +16,9 @@ set history=200
 set nrformats=      " use decimal notion rather then octal 07+01=08
 set laststatus=0
 set noruler
+set complete=.,w,b,,t
 
+set number
 set scrolloff=2
 noremap j gj
 noremap k gk
@@ -212,7 +215,7 @@ let NERDTreeMinimalUI=1
 Bundle 'kien/ctrlp.vim'
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)|elm-stuff|node_modules$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)|elm-stuff|vendor|node_modules$',
   \ 'file': '\v\.(exe|so|dll|a)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
@@ -224,7 +227,7 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_error_symbol = 'x'
 let g:syntastic_warning_symbol = '!'
 autocmd FileType javascript let b:syntastic_checkers = ['eslint']
-let g:syntastic_go_checkers = ['go', 'govet']
+let g:syntastic_go_checkers = ['govet']
 
 Bundle 'ElmCast/elm-vim'
 let g:elm_setup_keybindings = 0
@@ -258,20 +261,8 @@ let g:vimwiki_list = [{
       \ 'template_path': $HOME.'/.vimwiki/html/assets/',
       \ 'template_default': 'default',
       \ 'template_ext': '.tpl',
-      \ 'nested_syntaxes': {
-        \ 'c': 'c',
-        \ 'cpp': 'c++',
-        \ 'cs': 'c#',
-        \ 'java': 'java',
-        \ 'js': 'javascript',
-        \ 'css': 'css',
-        \ 'html': 'html',
-        \ 'sh': 'sh',
-        \ 'xml': 'xml',
-        \ 'haskell': 'haskell',
-        \ 'sql': 'sql',
-        \ 'elm': 'elm'},
-      \ 'auto_export': 1}]
+      \ 'auto_export': 1
+      \ }]
 
 
 Bundle 'rspi/silver.vim'
