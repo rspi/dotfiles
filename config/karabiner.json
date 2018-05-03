@@ -8,8 +8,10 @@
         {
             "complex_modifications": {
                 "parameters": {
+                    "basic.simultaneous_threshold_milliseconds": 50,
                     "basic.to_delayed_action_delay_milliseconds": 500,
-                    "basic.to_if_alone_timeout_milliseconds": 1000
+                    "basic.to_if_alone_timeout_milliseconds": 1000,
+                    "basic.to_if_held_down_threshold_milliseconds": 500
                 },
                 "rules": [
                     {
@@ -37,10 +39,104 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "Colon",
+                        "from": {
+                            "key_code": "escape",
+                            "modifiers": {
+                                "optional": [
+                                    "caps_lock"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "grave_accent_and_tilde",
+                                "modifiers": [
+                                    "left_shift"
+                                ]
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "description": "Semicolon",
+                        "from": {
+                            "key_code": "grave_accent_and_tilde",
+                            "modifiers": {
+                                "optional": [
+                                    "caps_lock"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "escape"
+                            }
+                        ],
+                        "type": "basic"
                     }
                 ]
             },
-            "devices": [],
+            "devices": [
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 592,
+                        "vendor_id": 1452
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": []
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 34304,
+                        "vendor_id": 1452
+                    },
+                    "ignore": true,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": []
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 631,
+                        "vendor_id": 1452
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": [
+                        {
+                            "from": {
+                                "key_code": "caps_lock"
+                            },
+                            "to": {
+                                "key_code": "right_control"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "non_us_backslash"
+                            },
+                            "to": {
+                                "key_code": "escape"
+                            }
+                        }
+                    ]
+                }
+            ],
             "fn_function_keys": [
                 {
                     "from": {
@@ -155,7 +251,7 @@
                         "key_code": "non_us_backslash"
                     },
                     "to": {
-                        "key_code": "escape"
+                        "key_code": "grave_accent_and_tilde"
                     }
                 }
             ],
