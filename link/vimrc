@@ -199,18 +199,21 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'othree/html5.vim'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'vim-scripts/hexHighlight.vim'
+Bundle 'slashmili/alchemist.vim'
+let g:alchemist_tag_map = '<leader>d'
+let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
+Bundle 'elixir-editors/vim-elixir'
+Bundle 'mhinz/vim-mix-format'
+" let g:mix_format_on_save = 1
+let g:mix_format_silent_errors = 1
+
+
 
 Bundle 'scrooloose/nerdtree'
 nnoremap <leader>n :NERDTreeToggle<cr>
 nnoremap <leader>m :NERDTreeFind<cr>
 let NERDTreeQuitOnOpen=1
 let NERDTreeMinimalUI=1
-
-" Bundle 'ervandew/supertab'
-" let g:SuperTabDefaultCompletionType = 'context'      " make supertab choose
-" let g:SuperTabContextDefaultCompletionType = '<c-n>' " fallback
-" let g:SuperTabMappingForward = '<c-n>'               " don't use <tab>
-" let g:SuperTabMappingBackward = '<c-p>'
 
 Bundle 'kien/ctrlp.vim'
 let g:ctrlp_cmd = 'CtrlPLastMode'
@@ -227,7 +230,7 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_error_symbol = 'x'
 let g:syntastic_warning_symbol = '!'
 autocmd FileType javascript let b:syntastic_checkers = ['eslint']
-let g:syntastic_go_checkers = ['govet']
+let g:syntastic_go_checkers = ['']
 
 Bundle 'ElmCast/elm-vim'
 let g:elm_setup_keybindings = 0

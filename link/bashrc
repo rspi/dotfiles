@@ -27,7 +27,7 @@ export PATH
 # Alias and functions                                                         #
 ###############################################################################
 
-alias vi="vim"
+alias vi="nvim"
 alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ip="ipconfig getifaddr en0"
 alias ip1="ipconfig getifaddr en1"
@@ -101,3 +101,5 @@ export HISTTIMEFORMAT="[%F %T] "
 
 export HISTSIZE=10000
 export HISTFILESIZE=10000
+export ERL_AFLAGS="-kernel shell_history enabled"
+
