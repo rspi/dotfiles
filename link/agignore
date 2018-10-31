@@ -6,6 +6,7 @@ bundle.js
 all.css
 node_modules
 vendor
+tags
 elm-stuff
 *.httpsock
 *.a

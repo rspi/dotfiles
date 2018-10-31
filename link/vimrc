@@ -194,9 +194,12 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
+Bundle 'brooth/far.vim'
+Bundle 'jreybert/vimagit'
 Bundle 'tpope/vim-fugitive'
 Bundle 'pangloss/vim-javascript'
 Bundle 'othree/html5.vim'
+Bundle 'ekalinin/Dockerfile.vim'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'vim-scripts/hexHighlight.vim'
 Bundle 'slashmili/alchemist.vim'
@@ -204,6 +207,7 @@ let g:alchemist_tag_map = '<leader>d'
 let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
 Bundle 'elixir-editors/vim-elixir'
 Bundle 'mhinz/vim-mix-format'
+Bundle 'tmux-plugins/vim-tmux-focus-events'
 " let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
 
@@ -212,13 +216,14 @@ let g:mix_format_silent_errors = 1
 Bundle 'scrooloose/nerdtree'
 nnoremap <leader>n :NERDTreeToggle<cr>
 nnoremap <leader>m :NERDTreeFind<cr>
+let g:NERDTreeWinSize=60
 let NERDTreeQuitOnOpen=1
 let NERDTreeMinimalUI=1
 
 Bundle 'kien/ctrlp.vim'
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)|elm-stuff|vendor|node_modules$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)|elm-stuff|vendor|build|_deps|node_modules$',
   \ 'file': '\v\.(exe|so|dll|a)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
@@ -273,7 +278,7 @@ let g:ag_command="ag --smart-case"
 
 Bundle 'rspi/jira-ids.vim'
 let g:jira_username='rasmuss'
-let g:jira_projects=['xbo']
+let g:jira_projects=['xlbt']
 let g:jira_statuses=["IN DEVELOPMENT", "IN REVIEW", "IN QA"]
 let g:jira_url='https://lisa5.ludologic.com'
 
