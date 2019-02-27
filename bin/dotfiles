@@ -130,7 +130,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
   fi
   if [[ "$config_homebrew" ]]; then
     e_msg 'Start homebrew installs'
-    source ~/.dotfiles/config/homebrew
+    brew bundle --file=~/.dotfiles/config/Brewfile
   fi 
 
   open ~/.dotfiles/config/licorice.itermcolors

@@ -71,6 +71,7 @@ bind a:${hyper} focus 'Adium'
 bind w:${hyper} focus 'VMware Fusion' 
 bind d:${hyper} focus 'Chromium' 
 bind o:${hyper} focus 'HipChat' 
+bind e:${hyper} focus 'PyCharm' 
 
 # Layout bindings
 bind 1:${hyper} layout 1monitor
