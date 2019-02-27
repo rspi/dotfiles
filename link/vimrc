@@ -195,6 +195,7 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'brooth/far.vim'
+Bundle 'craigemery/vim-autotag'
 Bundle 'jreybert/vimagit'
 Bundle 'tpope/vim-fugitive'
 Bundle 'pangloss/vim-javascript'

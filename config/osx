@@ -25,3 +25,15 @@ sudo nvram SystemAudioVolume=" "
 e_msg "System: Disable “natural” (Lion-style) scrolling"
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
+e_msg "System: Disable mouse acceleration"
+defaults write .GlobalPreferences com.apple.mouse.scaling -1
+
+e_msg "System: Enable touch click on trackpad"
+write com.apple.AppleMultitouchTrackpad Clicking -bool true
+
+e_msg "System: Set keyboard repeat speed"
+defaults write -g InitialKeyRepeat -int 15
+defaults write -g KeyRepeat -int 2
+
+e_msg "System: Disable shake to find cursor"
+defaults write .GlobalPreferences CGDisableCursorLocationMagnification -bool true
