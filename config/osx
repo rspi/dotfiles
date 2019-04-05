@@ -29,7 +29,8 @@ e_msg "System: Disable mouse acceleration"
 defaults write .GlobalPreferences com.apple.mouse.scaling -1
 
 e_msg "System: Enable touch click on trackpad"
-write com.apple.AppleMultitouchTrackpad Clicking -bool true
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 
 e_msg "System: Set keyboard repeat speed"
 defaults write -g InitialKeyRepeat -int 15
