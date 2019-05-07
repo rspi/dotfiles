@@ -6,8 +6,6 @@ bash -c "$(curl -fsSL https://raw.github.com/rspi/dotfiles/master/bin/dotfiles)"
 
 ### Manual not yet automated steps..
 
-- Set keyboard layout to eng
+- Set keyboard layout to Eng
 - Set login items (slate, scroll, karabiner)
 - Disable cache in chrome
-- [Vim -> Neovim](https://vi.stackexchange.com/questions/12794/how-to-share-config-between-vim-and-neovim/15548)
-
