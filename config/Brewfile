@@ -10,6 +10,7 @@ brew "tmux"
 brew "bash-completion"
 brew "the_silver_searcher"
 brew "jq"
+brew "editorconfig"
 
 cask "google-chrome"
 cask "iterm2"

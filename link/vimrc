@@ -208,11 +208,10 @@ let g:alchemist_tag_map = '<leader>d'
 let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
 Bundle 'elixir-editors/vim-elixir'
 Bundle 'mhinz/vim-mix-format'
+let g:mix_format_on_save = 1
 Bundle 'tmux-plugins/vim-tmux-focus-events'
-" let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
-
-
+Bundle 'editorconfig/editorconfig-vim'
 
 Bundle 'scrooloose/nerdtree'
 nnoremap <leader>n :NERDTreeToggle<cr>
