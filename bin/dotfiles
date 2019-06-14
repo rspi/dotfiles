@@ -48,6 +48,13 @@ function other_symlinks() {
     e_link "Symlink to $file"
   fi
 
+  file=~/.config/nvim/coc-settings.json
+  if ! [ -L $file ]; then
+    mkdir -p ~/.config/nvim/
+    ln -sf  ~/.dotfiles/config/nvim/coc-settings.json $file
+    e_link "Symlink to $file"
+  fi
+
   file=~/.config/karabiner/karabiner.json
   if ! [ -L $file ]; then
     mkdir -p ~/.config/karabiner/
