@@ -16,7 +16,7 @@ set history=200
 set nrformats=      " use decimal notion rather then octal 07+01=08
 set laststatus=0
 set noruler
-set complete=.,w,b,,t
+set complete=.,w,b
 
 set number
 set scrolloff=2
@@ -46,6 +46,9 @@ set foldmethod=marker
 set foldlevel=100
 set nofoldenable
 set foldmarker={,}
+
+nnoremap <silent><C-H> gT
+nnoremap <silent><C-L> gt
 
 syntax on
 colorscheme licorice
@@ -198,6 +201,7 @@ Bundle 'brooth/far.vim'
 Bundle 'craigemery/vim-autotag'
 Bundle 'jreybert/vimagit'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
 Bundle 'pangloss/vim-javascript'
 Bundle 'othree/html5.vim'
 Bundle 'ekalinin/Dockerfile.vim'
@@ -228,6 +232,11 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
+Bundle 'neoclide/coc.nvim'
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
+
 Bundle 'scrooloose/syntastic'
 let g:syntastic_enable_signs = 0
 let g:syntastic_check_on_open = 1
@@ -242,6 +251,9 @@ let g:elm_setup_keybindings = 0
 let g:elm_detailed_complete = 1
 let g:elm_format_autosave = 1
 au FileType elm nmap <silent><buffer> K <Plug>(elm-show-docs)
+au FileType elm nnoremap <silent> <Leader>gm /type alias Model<cr>:noh<esc>
+au FileType elm nnoremap <silent> <Leader>gv /view :<cr>:noh<esc>
+au FileType elm nnoremap <silent> <Leader>gu /update :<cr>:noh<esc>
 
 Bundle 'fatih/vim-go'
 let g:go_fmt_command = "gofmt"

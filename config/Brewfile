@@ -11,6 +11,7 @@ brew "bash-completion"
 brew "the_silver_searcher"
 brew "jq"
 brew "editorconfig"
+brew "diff-so-fancy"
 
 cask "google-chrome"
 cask "iterm2"
