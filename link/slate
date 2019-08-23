@@ -70,7 +70,7 @@ bind f:${hyper} focus 'Finder'
 bind a:${hyper} focus 'Adium' 
 bind w:${hyper} focus 'VMware Fusion' 
 bind d:${hyper} focus 'Chromium' 
-bind o:${hyper} focus 'HipChat' 
+bind o:${hyper} focus 'Mattermost' 
 bind e:${hyper} focus 'PyCharm' 
 
 # Layout bindings
