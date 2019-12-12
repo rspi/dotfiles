@@ -128,12 +128,11 @@ nnoremap <silent> <leader>rc :so $MYVIMRC<cr>:noh<cr>
 
 " quit :help with q
 function! QuitWithQ()
-  if &buftype == 'help' || &filetype == 'godoc'
+  if &buftype == 'help'
     nnoremap <buffer> <silent> q :q<cr>
   endif
 endfunction
 autocmd FileType help exe QuitWithQ()
-autocmd FileType godoc exe QuitWithQ()
 
 " Auto reload vimrc on :write.
 if has("autocmd")
@@ -229,7 +228,7 @@ let NERDTreeMinimalUI=1
 Bundle 'kien/ctrlp.vim'
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)|elm-stuff|vendor|build|_deps|node_modules$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)|elm-stuff|vendor|build|_deps|webpack_bundles|node_modules$',
   \ 'file': '\v\.(exe|so|dll|a)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
@@ -261,7 +260,6 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_error_symbol = 'x'
 let g:syntastic_warning_symbol = '!'
 autocmd FileType javascript let b:syntastic_checkers = ['eslint']
-let g:syntastic_go_checkers = ['']
 
 Bundle 'ElmCast/elm-vim'
 let g:elm_setup_keybindings = 0
@@ -271,17 +269,6 @@ au FileType elm nmap <silent><buffer> K <Plug>(elm-show-docs)
 au FileType elm nnoremap <silent> <Leader>gm /type alias Model<cr>:noh<esc>
 au FileType elm nnoremap <silent> <Leader>gv /view :<cr>:noh<esc>
 au FileType elm nnoremap <silent> <Leader>gu /update :<cr>:noh<esc>
-
-Bundle 'fatih/vim-go'
-let g:go_fmt_command = "gofmt"
-au FileType go nmap <Leader>gi <Plug>(go-info)
-au FileType go nmap <leader>gg <Plug>(go-run)
-au FileType go nmap <Leader>gr <Plug>(go-rename)
-au FileType go nmap <Leader>gd <Plug>(go-def-tab)
-au FileType go nmap <leader>gb <Plug>(go-build)
-au FileType go nmap <leader>gt <Plug>(go-test)
-au FileType go nmap <leader>gl <Plug>(go-metalinter)
-au FileType go nmap <Leader>gh <Plug>(go-doc-browser)
 
 Bundle 'tpope/vim-commentary'
 autocmd FileType apache setlocal commentstring=#%s

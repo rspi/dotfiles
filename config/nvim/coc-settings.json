@@ -5,6 +5,10 @@
   "list.insertMappings": {
     "<C-c>": "do:exit"
   },
+  "python.jediEnabled": false,
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.linting.enabled": true,
   "languageserver": {
     "elmLS": {
       "command": "elm-language-server",
@@ -15,7 +19,8 @@
         "runtime": "node",
         "elmPath": "elm",
         "elmFormatPath": "elm-format",
-        "elmTestPath": "elm-test"
+        "elmTestPath": "elm-test",
+        "elmAnalyseTrigger": "save"
       }
     }
   }
