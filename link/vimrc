@@ -242,6 +242,7 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f :CocCommand prettier.formatFile<cr>
 nmap <c-_> :CocList outline<cr>
+hi CocWarningSign  ctermfg=3
 
 " Temp hack to only format certain js files..
 function! FormatJsFile()
@@ -265,7 +266,7 @@ Bundle 'ElmCast/elm-vim'
 let g:elm_setup_keybindings = 0
 let g:elm_detailed_complete = 1
 let g:elm_format_autosave = 1
-au FileType elm nmap <silent><buffer> K <Plug>(elm-show-docs)
+au FileType elm nmap <silent><buffer> K :call CocAction('doHover')<cr>
 au FileType elm nnoremap <silent> <Leader>gm /type alias Model<cr>:noh<esc>
 au FileType elm nnoremap <silent> <Leader>gv /view :<cr>:noh<esc>
 au FileType elm nnoremap <silent> <Leader>gu /update :<cr>:noh<esc>
