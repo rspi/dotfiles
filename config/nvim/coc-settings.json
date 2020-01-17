@@ -1,4 +1,6 @@
 {
+  "diagnostic.errorSign": "●",
+  "diagnostic.warningSign": "●",
   "list.normalMappings": {
     "<C-c>": "do:exit"
   },
@@ -19,8 +21,7 @@
         "runtime": "node",
         "elmPath": "elm",
         "elmFormatPath": "elm-format",
-        "elmTestPath": "elm-test",
-        "elmAnalyseTrigger": "save"
+        "elmTestPath": "elm-test"
       }
     }
   }
