@@ -58,24 +58,6 @@ set cursorline
 " }
 " Config {
 
-" GUI Related.
-if has("gui_running")
-  set guioptions-=T " Disable toolbar
-  set guioptions-=e " don't use gui tab apperance
-  " set guioptions-=r " don't show scrollbars
-  set guioptions-=l " don't show scrollbars
-  set guioptions-=R " don't show scrollbars
-  set guioptions-=L " don't show scrollbars
-  set guicursor+=a:blinkon0 " disable blinking cursor
-  map <2-LeftMouse> *
-endif
-
-" Windows stuff
-if has("gui_win32")
-  set guifont=Consolas:h9
-  language messages en
-endif
-
 " Change cursor in insert mode for iterm
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
@@ -189,6 +171,13 @@ nnoremap <leader>te :call TextModeToggle("en")<cr>
 nnoremap <leader>ts :call TextModeToggle("sv")<cr>
 
 autocmd BufNewFile,BufRead COMMIT_EDITMSG call TextModeToggle("en")
+function! DisableCoc()
+    CocDisable
+endfunction
+autocmd BufNewFile,BufRead COMMIT_EDITMSG call DisableCoc()
+
+command! -range=% FormatJSON <line1>,<line2>!jq
+command! -range=% FormatXML <line1>,<line2>!xmllint --format %
 
 " }
 " Plugins {
@@ -225,13 +214,12 @@ let g:NERDTreeWinSize=60
 let NERDTreeQuitOnOpen=1
 let NERDTreeMinimalUI=1
 
-Bundle 'kien/ctrlp.vim'
-let g:ctrlp_cmd = 'CtrlPLastMode'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)|elm-stuff|vendor|build|_deps|webpack_bundles|node_modules$',
-  \ 'file': '\v\.(exe|so|dll|a)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
+Bundle 'junegunn/fzf'
+Bundle 'junegunn/fzf.vim'
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!{.git,node_modules,vendor,build,webpack_bundles,elm-stuff}/*"' "
+let g:fzf_preview_window = ''
+noremap <C-p> :Files<CR>
+nnoremap <silent> <leader>p :call fzf#run({'source': 'git diff --name-only prod', 'sink': 'e', 'down': '40%'})<cr>
 
 Bundle 'neoclide/coc.nvim'
 nmap <silent> gd <Plug>(coc-definition)
