@@ -8,4 +8,4 @@
   co = checkout
   st = status
   d = diff
-  re = !git for-each-ref --count=10 --sort=-committerdate refs/heads --format='%(HEAD)%(color:bold green)%(refname:short)|%(color:blue)%(committerdate:relative)|%(color:magenta)%(authorname)%(color:reset)' --color=always|column -ts'|'}
+  re = !git checkout $(git for-each-ref --count=10 --sort=-committerdate refs/heads --format='%(HEAD)%(color:bold green)%(refname:short)|%(color:blue)%(committerdate:relative)|%(color:magenta)%(authorname)%(color:reset)' --color=always|column -ts'|'} | fzf --ansi | awk '{print $1}')
