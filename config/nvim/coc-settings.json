@@ -7,10 +7,15 @@
   "list.insertMappings": {
     "<C-c>": "do:exit"
   },
+  "eslint.autoFix": true,
+  "eslint.autoFixOnSave": true,
   "python.jediEnabled": false,
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
-  "python.linting.enabled": true,
+  "python.linting.enabled": false,
+  "cSpell.enabled": false,
+  "python.formatting.provider": "autopep8",
+  "coc.preferences.formatOnSaveFiletypes": ["python", "css"],
   "languageserver": {
     "elmLS": {
       "command": "elm-language-server",
