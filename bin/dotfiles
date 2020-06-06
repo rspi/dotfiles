@@ -61,6 +61,13 @@ function other_symlinks() {
     ln -sf  ~/.dotfiles/config/karabiner.json $file
     e_link "Symlink to $file"
   fi
+
+  file=~/.config/coc/extensions/package.json
+  if ! [ -L $file ]; then
+    mkdir -p ~/.config/coc/extensions/
+    ln -sf  ~/.dotfiles/config/coc-package.json $file
+    e_link "Symlink to $file"
+  fi
 }
 
 sudo -v
@@ -140,7 +147,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
 
   if [[ "$update_vimBundle" ]]; then
     e_msg 'Install / Update vim bundles'
-    vim +BundleInstall +BundleUpdate +qall
+    nvim +BundleInstall +BundleUpdate +qall
   fi
   if [[ "$config_homebrew" ]]; then
     e_msg 'Start homebrew installs'
