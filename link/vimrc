@@ -112,7 +112,7 @@ nnoremap <silent> <leader>rc :so $MYVIMRC<cr>:noh<cr>
 function! QuitWithQ()
   if &buftype == 'help'
     nnoremap <buffer> <silent> q :q<cr>
-    nnoremap <silent><C-C> :q<cr>
+    nnoremap <buffer> <silent><C-C> :q<cr>
   endif
 endfunction
 autocmd FileType help exe QuitWithQ()
@@ -172,10 +172,6 @@ nnoremap <leader>te :call TextModeToggle("en")<cr>
 nnoremap <leader>ts :call TextModeToggle("sv")<cr>
 
 autocmd BufNewFile,BufRead COMMIT_EDITMSG call TextModeToggle("en")
-function! DisableCoc()
-    CocDisable
-endfunction
-autocmd BufNewFile,BufRead COMMIT_EDITMSG call DisableCoc()
 
 command! -range=% FormatJSON <line1>,<line2>!jq
 command! -range=% FormatXML <line1>,<line2>!xmllint --format %
@@ -225,30 +221,26 @@ vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f :CocCommand prettier.formatFile<cr>
 nmap <c-_> :CocList outline<cr>
 hi CocWarningSign  ctermfg=3
+set shortmess+=c
+set updatetime=300
 
-" Temp hack to only format certain js files..
-function! FormatJsFile()
-    CocCommand prettier.formatFile
-    sleep 1
-    write
+nmap [g <Plug>(coc-git-prevchunk)
+nmap ]g <Plug>(coc-git-nextchunk)
+nmap gs <Plug>(coc-git-commit)
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
 endfunction
-autocmd BufWritePost */es/*.js call FormatJsFile()
-autocmd BufWritePost */es/*.jsx call FormatJsFile()
-
-
-Bundle 'scrooloose/syntastic'
-let g:syntastic_enable_signs = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_error_symbol = 'x'
-let g:syntastic_warning_symbol = '!'
-autocmd FileType javascript let b:syntastic_checkers = ['eslint']
 
 Bundle 'ElmCast/elm-vim'
 let g:elm_setup_keybindings = 0
 let g:elm_detailed_complete = 1
 let g:elm_format_autosave = 1
-au FileType elm nmap <silent><buffer> K :call CocAction('doHover')<cr>
 au FileType elm nnoremap <silent> <Leader>gm /type alias Model<cr>:noh<esc>
 au FileType elm nnoremap <silent> <Leader>gv /view :<cr>:noh<esc>
 au FileType elm nnoremap <silent> <Leader>gu /update :<cr>:noh<esc>
@@ -257,29 +249,14 @@ Bundle 'tpope/vim-commentary'
 autocmd FileType apache setlocal commentstring=#%s
 autocmd FileType elm setlocal commentstring=--%s
 
-Bundle 'vimwiki/vimwiki'
-let g:vimwiki_folding = 'expr'
-nnoremap <leader>w/ :VimwikiSearch 
-autocmd BufNewFile,BufRead *.wiki call TextModeToggle("en")
-
-let g:vimwiki_list = [{
-      \ 'path': $HOME.'/.vimwiki/wiki/',
-      \ 'path_html': $HOME.'/.vimwiki/html/',
-      \ 'template_path': $HOME.'/.vimwiki/html/assets/',
-      \ 'template_default': 'default',
-      \ 'template_ext': '.tpl',
-      \ 'auto_export': 1
-      \ }]
-
-
 Bundle 'rspi/silver.vim'
 let g:ag_command="ag --smart-case"
 
 Bundle 'rspi/jira-ids.vim'
 let g:jira_username='rasmuss'
-let g:jira_projects=['xlbt']
-let g:jira_statuses=["IN DEVELOPMENT", "IN REVIEW", "IN QA"]
-let g:jira_url='https://lisa5.ludologic.com'
+let g:jira_projects=['RES']
+let g:jira_statuses=["OPEN", "IN PROGRESS", "READY FOR TEST"]
+let g:jira_url='jira.trioptima.net'
 
 filetype plugin indent on
 " }

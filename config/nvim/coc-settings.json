@@ -11,11 +11,12 @@
   "eslint.autoFixOnSave": true,
   "python.jediEnabled": false,
   "python.linting.pylintEnabled": false,
+  "git.showCommitInFloating": true,
+  "git.enableGutters": false,
   "python.linting.flake8Enabled": true,
   "python.linting.enabled": false,
-  "cSpell.enabled": false,
   "python.formatting.provider": "autopep8",
-  "coc.preferences.formatOnSaveFiletypes": ["python", "css"],
+  "coc.preferences.formatOnSaveFiletypes": ["python", "css", "javascript", "scss"],
   "languageserver": {
     "elmLS": {
       "command": "elm-language-server",
