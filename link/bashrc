@@ -91,6 +91,9 @@ function _prompt_command() {
   PS1="`_git_prompt`"'\[\e[1;34m\]\W\[\e[m\] \[\e[0;37m\]❯ '
 }
 
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
+
 PROMPT_COMMAND=_prompt_command
 
 export LC_ALL=en_US.UTF-8

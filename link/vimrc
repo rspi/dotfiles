@@ -50,6 +50,8 @@ set foldmarker={,}
 
 nnoremap <silent><C-H> gT
 nnoremap <silent><C-L> gt
+nnoremap gT :-tabmove<cr>
+nnoremap gt :+tabmove<cr>
 
 syntax on
 colorscheme licorice
