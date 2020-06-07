@@ -50,6 +50,15 @@ httpserver() {
  python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
 }
 
+encrypt() {
+  gpg --output "$1.gpb" --symmetric --no-symkey-cache --cipher-algo AES256 $1
+}
+
+decrypt() {
+  local filename=$(sed 's/.gpb//' <<< $1)
+  gpg --output $filename --decrypt $1
+}
+
 # Search by name
 search() {
   find . -iname "*$@*";
