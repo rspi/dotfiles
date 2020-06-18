@@ -177,6 +177,7 @@ autocmd BufNewFile,BufRead COMMIT_EDITMSG call TextModeToggle("en")
 
 command! -range=% FormatJSON <line1>,<line2>!jq
 command! -range=% FormatXML <line1>,<line2>!xmllint --format %
+command! PyCharm :silent !charm --line <line1> %
 
 " }
 " Plugins {
@@ -211,7 +212,7 @@ Bundle 'junegunn/fzf.vim'
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!{.git,node_modules,vendor,build,webpack_bundles,elm-stuff}/*"' "
 let g:fzf_preview_window = ''
 nnoremap <C-f><C-p> :Files<cr>
-nnoremap <C-f><C-g> :call fzf#run({'source': 'git diff --name-only prod', 'sink': 'e', 'down': '40%'})<cr>
+nnoremap <C-f><C-g> :call fzf#run(fzf#wrap({'source': 'git diff --name-only $(git merge-base HEAD origin/prod)..', 'down': '40%'}))<cr>
 
 Bundle 'neoclide/coc.nvim'
 nmap <silent> gd <Plug>(coc-definition)
