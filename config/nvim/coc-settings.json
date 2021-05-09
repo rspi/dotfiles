@@ -7,16 +7,15 @@
   "list.insertMappings": {
     "<C-c>": "do:exit"
   },
-  "eslint.autoFix": true,
   "eslint.autoFixOnSave": true,
   "git.showCommitInFloating": true,
   "git.enableGutters": false,
-  "python.jediEnabled": false,
-  "python.linting.pylintEnabled": false,
+  "python.linting.pylintEnabled": true,
   "python.linting.flake8Enabled": true,
+  "suggest.autoTrigger": "none",
   "python.linting.enabled": false,
   "list.previewSplitRight": true,
-  "python.formatting.provider": "autopep8",
+  "python.formatting.provider": "black",
   "coc.preferences.formatOnSaveFiletypes": ["python", "css", "javascript", "scss"],
   "languageserver": {
     "elmLS": {
