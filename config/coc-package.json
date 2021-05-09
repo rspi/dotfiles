@@ -1,12 +1,13 @@
 {
   "dependencies": {
-    "coc-css": ">=1.2.3",
-    "coc-eslint": ">=1.2.7",
-    "coc-git": ">=1.7.13",
-    "coc-json": ">=1.2.6",
-    "coc-prettier": ">=1.1.14",
-    "coc-python": ">=1.2.12",
-    "coc-stylelintplus": ">=1.0.4",
-    "coc-tsserver": ">=1.5.1"
+    "coc-css": ">=1.2.6",
+    "coc-eslint": ">=1.4.5",
+    "coc-git": ">=2.3.1",
+    "coc-json": ">=1.3.4",
+    "coc-prettier": ">=1.1.23",
+    "coc-pyright": ">=1.1.123",
+    "coc-sql": ">=0.5.0",
+    "coc-stylelintplus": ">=1.4.0",
+    "coc-tsserver": ">=1.6.8"
   }
 }
