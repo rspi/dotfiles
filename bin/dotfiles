@@ -144,6 +144,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
 
   home_folder_symlinks
   other_symlinks
+  touch ~/.vimrc_local
 
   if [[ "$update_vimBundle" ]]; then
     e_msg 'Install / Update vim bundles'

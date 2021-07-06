@@ -193,7 +193,8 @@ Bundle 'jreybert/vimagit'
 Bundle 'tpope/vim-fugitive'
 nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
-Bundle 'tpope/vim-surround'
+Bundle 'machakann/vim-sandwich'
+Bundle 'rhysd/vim-grammarous'
 Bundle 'pangloss/vim-javascript'
 Bundle 'mxw/vim-jsx'
 Bundle 'othree/html5.vim'
