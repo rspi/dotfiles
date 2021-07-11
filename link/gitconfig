@@ -13,3 +13,5 @@
   wip = !git add -u && git commit -m '🚧 WIP' --no-verify && git push
 [pull]
 	rebase = false
+[init]
+	defaultBranch = master
