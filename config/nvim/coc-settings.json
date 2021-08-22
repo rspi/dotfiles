@@ -2,17 +2,21 @@
   "diagnostic.errorSign": "●",
   "diagnostic.warningSign": "●",
   "list.normalMappings": {
-    "<C-c>": "do:exit"
+    "<C-c>": "do:exit",
+    "<C-n>": "normal:j",
+    "<C-p>": "normal:k"
   },
   "list.insertMappings": {
-    "<C-c>": "do:exit"
+    "<C-c>": "do:exit",
+    "<C-n>": "normal:j",
+    "<C-p>": "normal:k"
   },
   "eslint.autoFixOnSave": true,
   "git.showCommitInFloating": true,
   "git.enableGutters": false,
   "python.linting.pylintEnabled": true,
   "python.linting.flake8Enabled": true,
-  "suggest.autoTrigger": "none",
+  "suggest.autoTrigger": "trigger",
   "python.linting.enabled": false,
   "list.previewSplitRight": true,
   "python.formatting.provider": "black",

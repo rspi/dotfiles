@@ -191,8 +191,9 @@ Bundle 'brooth/far.vim'
 Bundle 'craigemery/vim-autotag'
 Bundle 'jreybert/vimagit'
 Bundle 'tpope/vim-fugitive'
-nnoremap gdh :diffget //2<CR>
-nnoremap gdl :diffget //3<CR>
+autocmd FileType fugitiveblame nmap <buffer> q gq
+" nnoremap gdh :diffget //2<CR>
+" nnoremap gdl :diffget //3<CR>
 Bundle 'machakann/vim-sandwich'
 Bundle 'rhysd/vim-grammarous'
 Bundle 'pangloss/vim-javascript'
@@ -207,6 +208,7 @@ let g:python_highlight_all = 1
 Bundle 'peitalin/vim-jsx-typescript'
 Bundle 'tmux-plugins/vim-tmux-focus-events'
 Bundle 'editorconfig/editorconfig-vim'
+Bundle 'nvim-treesitter/nvim-treesitter'
 
 Bundle 'junegunn/vim-easy-align'
 xmap ga <Plug>(EasyAlign)
@@ -236,7 +238,7 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f :CocCommand prettier.formatFile<cr>
 nmap <c-_> :CocList outline<cr>
-hi CocWarningSign  ctermfg=3
+hi CocWarningSign ctermfg=3
 set shortmess+=c
 set updatetime=300
 nmap <leader>1 :call coc#config('diagnostic.messageTarget', 'echo')<CR>
@@ -249,9 +251,18 @@ nmap <leader>a <Plug>(coc-codeaction)
 nmap <leader>qf <Plug>(coc-fix-current)
 
 inoremap <silent><expr> <c-space> coc#refresh()
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+
 nmap <silent> <C-q> <Plug>(coc-range-select)
 xmap <silent> <C-q> <Plug>(coc-range-select)
 
+" since format on save in python is broken 
+autocmd BufWritePost *.py call CocAction('format') | w
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
