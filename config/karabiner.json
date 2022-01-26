@@ -16,7 +16,7 @@
                 },
                 "rules": [
                     {
-                        "description": "Change caps_lock to command+control+option+shift.",
+                        "description": "Change left ctrl to command+control+option+shift.",
                         "manipulators": [
                             {
                                 "from": {
@@ -40,6 +40,29 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "Force end call (restart) zoom!",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "q",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                },
+                                "to" : {
+                                    "shell_command": "killall zoom.us && open -a  /Applications/zoom.us.app/Contents/MacOS/zoom.us"
+                                },
+                                "type" :"basic"
+
+                            }
+                        ]
+
                     },
                     {
                         "description": "Makes button next to 1 work as escape",

@@ -39,3 +39,6 @@ defaults write -g KeyRepeat -int 2
 
 e_msg "System: Disable shake to find cursor"
 defaults write .GlobalPreferences CGDisableCursorLocationMagnification -bool true
+
+e_msg "System: Disable irritating app store notifications"
+write com.apple.appstored LastUpdateNotification -date "2099-12-12 12:00:00 +0000"

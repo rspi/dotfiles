@@ -192,6 +192,9 @@ Bundle 'craigemery/vim-autotag'
 Bundle 'jreybert/vimagit'
 Bundle 'tpope/vim-fugitive'
 autocmd FileType fugitiveblame nmap <buffer> q gq
+Bundle 'kdheepak/lazygit.nvim'
+nnoremap <silent> <leader>gg :LazyGit<CR>
+let g:lazygit_floating_window_scaling_factor = 1
 " nnoremap gdh :diffget //2<CR>
 " nnoremap gdl :diffget //3<CR>
 Bundle 'machakann/vim-sandwich'
@@ -276,7 +279,7 @@ endfunction
 Bundle 'ElmCast/elm-vim'
 let g:elm_setup_keybindings = 0
 let g:elm_detailed_complete = 1
-let g:elm_format_autosave = 1
+let g:elm_format_autosave = 0
 au FileType elm nnoremap <silent> <Leader>gm /type alias Model<cr>:noh<esc>
 au FileType elm nnoremap <silent> <Leader>gv /view :<cr>:noh<esc>
 au FileType elm nnoremap <silent> <Leader>gu /update :<cr>:noh<esc>

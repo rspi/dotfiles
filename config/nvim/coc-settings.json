@@ -20,7 +20,7 @@
   "python.linting.enabled": false,
   "list.previewSplitRight": true,
   "python.formatting.provider": "black",
-  "coc.preferences.formatOnSaveFiletypes": ["python", "css", "javascript", "scss", "rust"],
+  "coc.preferences.formatOnSaveFiletypes": ["elm", "python", "css", "javascript", "scss", "rust"],
   "languageserver": {
     "elmLS": {
       "command": "elm-language-server",
