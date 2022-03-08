@@ -50,6 +50,16 @@ httpserver() {
  python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
 }
 
+listening() {
+    if [ $# -eq 0 ]; then
+        sudo lsof -iTCP -sTCP:LISTEN -n -P
+    elif [ $# -eq 1 ]; then
+        sudo lsof -iTCP -sTCP:LISTEN -n -P | grep -i --color $1
+    else
+        echo "Usage: listening [pattern]"
+    fi
+}
+
 encrypt() {
   gpg --output "$1.gpb" --symmetric --no-symkey-cache --cipher-algo AES256 $1
 }
@@ -97,7 +107,13 @@ fi
 }
 
 function _prompt_command() {
-  PS1="`_git_prompt`"'\[\e[1;34m\]\W\[\e[m\] \[\e[0;37m\]❯ '
+  local GIT=`_git_prompt`
+  if [[ -n "$IN_NIX_SHELL" ]]; then
+      local NIX="\[\e[1;32m\]nix "
+  fi
+  local DIR="\[\e[1;34m\]\W\[\e[m\] "
+  local ARROW="\[\e[0;37m\]❯ "
+  PS1="$GIT$DIR$NIX$ARROW"
 }
 
 export MANPAGER='nvim +Man!'
