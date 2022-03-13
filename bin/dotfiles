@@ -103,7 +103,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
   # Install Homebrew
   if [[ ! "$(type -P brew)" ]]; then
     e_msg "Installing Homebrew.."
-    true | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    true | bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 
   if [[ ! "$(type -P brew)" ]]; then
@@ -133,7 +133,6 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
 
   if [[ ! -d ~/.dotfiles ]]; then
     e_msg 'Download dotfiles repo'
-    cd ~/.dotfiles
     git clone --recursive git://github.com/rspi/dotfiles.git ~/.dotfiles
   else
     e_msg 'Update dotfiles repo'
@@ -146,14 +145,14 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
   other_symlinks
   touch ~/.vimrc_local
 
-  if [[ "$update_vimBundle" ]]; then
-    e_msg 'Install / Update vim bundles'
-    nvim +BundleInstall +BundleUpdate +qall
-  fi
   if [[ "$config_homebrew" ]]; then
     e_msg 'Start homebrew installs'
     brew bundle --file=~/.dotfiles/config/Brewfile
   fi 
+  if [[ "$update_vimBundle" ]]; then
+    e_msg 'Install / Update vim bundles'
+    nvim +BundleInstall +BundleUpdate +qall
+  fi
   if [[ "$config_osx" ]]; then
     e_msg 'Start osx system config'
     source ~/.dotfiles/config/osx

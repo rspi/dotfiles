@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
 e_msg "Menu bar: disable transparency"
-# defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
-defaults write com.apple.universalaccess reduceTransparency -bool true
+defaults write .GlobalPreferences AppleReduceDesktopTinting -int 1
+
+e_msg "System: Dark mode"
+defaults write .GlobalPreferences AppleInterfaceStyle Dark
 
 e_msg "Menu bar: show remaining battery in percentage "
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"

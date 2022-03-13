@@ -20,6 +20,9 @@ push_path ~/.dotfiles/bin
 # local/bin
 push_path /usr/local/bin
 
+# brew
+push_path /usr/local/sbin
+
 export PATH 
 
 
@@ -142,4 +145,3 @@ export HISTSIZE=10000
 export HISTFILESIZE=10000
 export ERL_AFLAGS="-kernel shell_history enabled"
 
-. "$HOME/.cargo/env"
