@@ -133,7 +133,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
 
   if [[ ! -d ~/.dotfiles ]]; then
     e_msg 'Download dotfiles repo'
-    git clone --recursive git://github.com/rspi/dotfiles.git ~/.dotfiles
+    git clone --recursive git@github.com:rspi/dotfiles.git ~/.dotfiles
   else
     e_msg 'Update dotfiles repo'
     cd ~/.dotfiles
