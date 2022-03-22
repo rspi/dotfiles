@@ -104,7 +104,9 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
   if [[ ! "$(type -P brew)" ]]; then
     e_msg "Installing Homebrew.."
     true | bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+    if [[ $(arch) == 'arm64' ]]; then
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
   fi
 
   if [[ ! "$(type -P brew)" ]]; then
@@ -134,12 +136,17 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
 
   if [[ ! -d ~/.dotfiles ]]; then
     e_msg 'Download dotfiles repo'
-    git clone --recursive git@github.com:rspi/dotfiles.git ~/.dotfiles
+    git clone --recursive https://github.com/rspi/dotfiles.git ~/.dotfiles
   else
     e_msg 'Update dotfiles repo'
     cd ~/.dotfiles
     git pull
     git submodule update --init --recursive --quiet
+  fi
+
+  if [[ ! -d ~/.dotfiles ]]; then
+    e_error "Missing ~/.dotfiles directory. Aborting."
+    exit 1
   fi
 
   home_folder_symlinks
