@@ -164,7 +164,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
   if [[ "$config_osx" ]]; then
     e_msg 'Start osx system config'
     source ~/.dotfiles/config/osx
-    e_msg 'Remeber to logout and in for osx changes to take effect!'
+    e_msg 'Remember to logout and in for osx changes to take effect!'
     open ~/.dotfiles/config/licorice.itermcolors
   fi
 
