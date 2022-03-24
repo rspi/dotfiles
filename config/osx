@@ -6,11 +6,13 @@ defaults write .GlobalPreferences AppleReduceDesktopTinting -int 1
 e_msg "System: Dark mode"
 defaults write .GlobalPreferences AppleInterfaceStyle Dark
 
-e_msg "Menu bar: show remaining battery in percentage "
-defaults write com.apple.menuextra.battery ShowPercent -string "YES"
-defaults write com.apple.menuextra.battery ShowTime -string "NO"
+e_msg "System: Dock behaviour"
+defaults write com.apple.Dock autohide-delay -float 0.0001
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock no-bouncing -bool true
+killall Dock
 
-e_msg "Finder: show all filename extensions"
+e_msg "System: show all filename extensions"
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 e_msg "System: Disable the “Are you sure you want to open this application?” dialog"
