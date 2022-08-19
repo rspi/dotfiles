@@ -231,6 +231,7 @@ let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!{.git,node_mod
 let g:fzf_preview_window = ''
 nnoremap <silent><C-f><C-p> :Files<cr>
 nnoremap <silent><C-f><C-g> :call fzf#run(fzf#wrap({'source': 'git diff --name-only $(git merge-base HEAD origin/prod)..', 'window': { 'width': 0.6, 'height': 0.5 }}))<cr>
+nnoremap <silent><C-f><C-d> :call fzf#run(fzf#wrap({'source': 'git diff --name-only', 'window': { 'width': 0.6, 'height': 0.5 }}))<cr>
 
 " call coc#util#install()
 Bundle 'neoclide/coc.nvim'
@@ -257,10 +258,8 @@ nmap <leader>qf <Plug>(coc-fix-current)
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
 
 nmap <silent> <C-q> <Plug>(coc-range-select)
 xmap <silent> <C-q> <Plug>(coc-range-select)

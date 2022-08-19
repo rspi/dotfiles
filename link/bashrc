@@ -14,12 +14,6 @@ push_path(){
   fi
 }
 
-# bin
-push_path ~/.dotfiles/bin
-
-# local/bin
-push_path /usr/local/bin
-
 # brew
 if [[ $(arch) == 'arm64' ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -27,6 +21,13 @@ else
   push_path /usr/local/sbin
 fi
 export HOMEBREW_NO_ANALYTICS=1
+
+# bin
+push_path ~/.dotfiles/bin
+
+# local/bin
+push_path /usr/local/bin
+
 
 export PATH 
 
@@ -42,8 +43,6 @@ alias ip="ipconfig getifaddr en0"
 alias ip1="ipconfig getifaddr en1"
 alias week="date +%V"
 alias cl="clear"
-alias todo="vim +VimwikiIndex +'VimwikiGoto todo'"
-alias wiki="vim +VimwikiIndex"
 alias ..="cd .."
 alias json='python -mjson.tool'
 alias cd='cd -P'
@@ -149,4 +148,3 @@ export HISTTIMEFORMAT="[%F %T] "
 export HISTSIZE=10000
 export HISTFILESIZE=10000
 export ERL_AFLAGS="-kernel shell_history enabled"
-
