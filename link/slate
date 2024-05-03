@@ -62,15 +62,12 @@ bind j:${hyper} focus down
 
 # App bindings
 bind i:${hyper} focus 'iTerm2' 
-bind m:${hyper} focus 'Microsoft Outlook'
-bind n:${hyper} focus 'Calendar' 
+bind m:${hyper} focus 'Gmail'
+bind n:${hyper} focus 'Google Calendar' 
 bind b:${hyper} focus 'Google Chrome'
 bind f:${hyper} focus 'Firefox'
 bind f:${hyper} focus 'Finder' 
-bind a:${hyper} focus 'Adium' 
-bind w:${hyper} focus 'VMware Fusion' 
-bind d:${hyper} focus 'Chromium' 
-bind o:${hyper} focus 'Mattermost' 
+bind o:${hyper} focus 'Google Chat' 
 bind e:${hyper} focus 'PyCharm' 
 bind z:${hyper} focus 'zoom.us'
 

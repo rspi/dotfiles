@@ -9,6 +9,7 @@
   st = status
   d = diff
   dc = diff --cached
+  rh = reset --hard @{u}
   b = !git checkout $(git for-each-ref --count=20 --sort=-committerdate refs/heads --format='%(HEAD)%(color:bold green)%(refname:short)|%(color:blue)%(committerdate:relative)|%(color:magenta)%(authorname)%(color:reset)' --color=always|column -ts'|'} | fzf --ansi | awk '{print $1}')
   wip = !git add -u && git commit -m '🚧 WIP' --no-verify && git push
 [pull]
