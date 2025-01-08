@@ -41,18 +41,10 @@ function home_folder_symlinks() {
 
 # more special case symlinks
 function other_symlinks() {
-  file=~/.config/nvim/init.vim
-  if ! [ -L $file ]; then
-    mkdir -p ~/.config/nvim/
-    ln -sf  ~/.dotfiles/config/nvim/init.vim $file
-    e_link "Symlink to $file"
-  fi
-
-  file=~/.config/nvim/coc-settings.json
-  if ! [ -L $file ]; then
-    mkdir -p ~/.config/nvim/
-    ln -sf  ~/.dotfiles/config/nvim/coc-settings.json $file
-    e_link "Symlink to $file"
+  folder=~/.config/nvim
+  if ! [ -L $folder ]; then
+    ln -sf  ~/.dotfiles/config/nvim/ $folder
+    e_link "Symlink to $folder"
   fi
 
   file=~/.config/karabiner/karabiner.json
