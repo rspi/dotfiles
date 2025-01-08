@@ -143,7 +143,6 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
 
   home_folder_symlinks
   other_symlinks
-  touch ~/.vimrc_local
 
   if [[ "$config_homebrew" ]]; then
     e_msg 'Start homebrew installs'
@@ -151,7 +150,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
   fi 
   if [[ "$update_vimBundle" ]]; then
     e_msg 'Install / Update vim bundles'
-    nvim +BundleInstall +BundleUpdate +qall
+    nvim --headless "+Lazy! sync" +qa
   fi
   if [[ "$config_osx" ]]; then
     e_msg 'Start osx system config'
