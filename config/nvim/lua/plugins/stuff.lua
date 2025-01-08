@@ -29,6 +29,9 @@ return {
 		"stevearc/oil.nvim",
 		config = function()
 			require("oil").setup({
+				view_options = {
+					show_hidden = true,
+				},
 				keymaps = {
 					["<C-f><C-f>"] = { "actions.close", mode = "n" },
 					["q"] = { "actions.close", mode = "n" },
