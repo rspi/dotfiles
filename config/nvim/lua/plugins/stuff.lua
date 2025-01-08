@@ -26,6 +26,19 @@ return {
 	{ "kylechui/nvim-surround", config = true },
 	"editorconfig/editorconfig-vim",
 	{
+		"stevearc/oil.nvim",
+		config = function()
+			require("oil").setup({
+				keymaps = {
+					["<C-f><C-f>"] = { "actions.close", mode = "n" },
+					["q"] = { "actions.close", mode = "n" },
+					["<C-u>"] = { "actions.parent", mode = "n" },
+				},
+			})
+			vim.keymap.set("n", "<C-f><C-f>", ":Oil<CR>", { silent = true, noremap = false })
+		end,
+	},
+	{
 		"rspi/silver.vim",
 		config = function()
 			vim.g.ag_command = "ag --smart-case"

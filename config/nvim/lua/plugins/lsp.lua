@@ -20,9 +20,9 @@ return {
 					-- 	python = { analysis = { diagnosticMode = "workspace" } },
 					-- },
 				},
-				tsserver = {},
+				ts_ls = {},
 				stylelint_lsp = {},
-				ruff_lsp = {},
+				ruff = {},
 				lua_ls = {
 					settings = {
 						Lua = {
