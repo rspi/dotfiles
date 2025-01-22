@@ -16,12 +16,6 @@ return {
 			},
 		},
 		pickers = {
-			lsp_document_symbols = {
-				layout_strategy = "horizontal",
-				layout_config = {
-					preview_width = 0.7,
-				},
-			},
 			lsp_definitions = {
 				show_line = false,
 			},

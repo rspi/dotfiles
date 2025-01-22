@@ -8,20 +8,18 @@ return {
 			vim.cmd("colorscheme licorice")
 		end,
 	},
-	-- syntax, replace with tree-sitter?
-	"pangloss/vim-javascript",
-	"othree/html5.vim",
-	"jbyuki/quickmath.nvim",
-	"hail2u/vim-css3-syntax",
 	{
-		"vim-python/python-syntax",
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
 		config = function()
-			vim.g.python_highlight_all = 1
+			local configs = require("nvim-treesitter.configs")
+			configs.setup({
+				auto_install = true,
+				highlight = { enable = true },
+				indent = { enable = true },
+			})
 		end,
 	},
-	"peitalin/vim-jsx-typescript",
-	"ekalinin/Dockerfile.vim",
-	--
 	{ "numToStr/Comment.nvim", config = true },
 	{ "kylechui/nvim-surround", config = true },
 	"editorconfig/editorconfig-vim",
@@ -32,10 +30,14 @@ return {
 				view_options = {
 					show_hidden = true,
 				},
+				use_default_keymaps = false,
 				keymaps = {
-					["<C-f><C-f>"] = { "actions.close", mode = "n" },
 					["q"] = { "actions.close", mode = "n" },
-					["<C-u>"] = { "actions.parent", mode = "n" },
+					["<C-f><C-f>"] = { "actions.close", mode = "n" },
+					["<CR>"] = "actions.select",
+					["<C-l>"] = "actions.select",
+					["<C-h>"] = { "actions.parent", mode = "n" },
+					["<C-t>"] = { "actions.select", opts = { tab = true } },
 				},
 			})
 			vim.keymap.set("n", "<C-f><C-f>", ":Oil<CR>", { silent = true, noremap = false })

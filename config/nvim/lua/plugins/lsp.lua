@@ -15,14 +15,11 @@ return {
 				jsonls = {},
 				elmls = {},
 				rust_analyzer = {},
-				pyright = {
-					-- settings = {
-					-- 	python = { analysis = { diagnosticMode = "workspace" } },
-					-- },
-				},
+				pyright = {},
 				ts_ls = {},
 				stylelint_lsp = {},
 				ruff = {},
+				cssls = {},
 				lua_ls = {
 					settings = {
 						Lua = {
@@ -64,6 +61,15 @@ return {
 					vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
 				end
 
+				local format = function()
+					vim.lsp.buf.format({
+						timeout_ms = 5000,
+						filter = function(client)
+							return client.name ~= "cssls"
+						end,
+					})
+				end
+
 				-- Keymaps
 				local telescope = require("telescope.builtin")
 				nmap("gd", telescope.lsp_definitions, "Goto Definitions")
@@ -82,15 +88,16 @@ return {
 				vim.api.nvim_create_autocmd("BufWritePre", {
 					group = vim.api.nvim_create_augroup("LspFormat." .. bufnr, {}),
 					buffer = bufnr,
-					callback = function()
-						vim.lsp.buf.format({ timeout_ms = 5000 })
-					end,
+					callback = format,
 				})
 
 				-- Create a command `:Format`
-				vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-					vim.lsp.buf.format({ timeout_ms = 5000 })
-				end, { desc = "Format current buffer with LSP" })
+				vim.api.nvim_buf_create_user_command(
+					bufnr,
+					"Format",
+					format,
+					{ desc = "Format current buffer with LSP" }
+				)
 			end
 
 			-- Ensure tools installed
