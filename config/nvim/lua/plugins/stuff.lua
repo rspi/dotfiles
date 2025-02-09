@@ -4,6 +4,7 @@ return {
 		"rspi/licorice.vim",
 		priority = 1000,
 		branch = "wip",
+		dev = true,
 		config = function()
 			vim.cmd("colorscheme licorice")
 		end,
@@ -29,6 +30,9 @@ return {
 			require("oil").setup({
 				view_options = {
 					show_hidden = true,
+					is_always_hidden = function(name, bufnr)
+						return name == ".."
+					end,
 				},
 				use_default_keymaps = false,
 				keymaps = {
