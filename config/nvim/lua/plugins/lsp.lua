@@ -4,7 +4,6 @@ return {
 		dependencies = {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
-			"folke/neodev.nvim",
 			"hrsh7th/cmp-nvim-lsp",
 		},
 		opts = {
@@ -36,7 +35,6 @@ return {
 			},
 		},
 		config = function(_, opts)
-			require("neodev").setup()
 			require("mason").setup()
 			local mason_lspconfig = require("mason-lspconfig")
 
@@ -125,6 +123,11 @@ return {
 			})
 		end,
 	},
+	{
+		"folke/lazydev.nvim",
+		ft = "lua",
+		opts = {},
+	},
 
 	-- Formatters
 	{
@@ -195,6 +198,7 @@ return {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "buffer" },
+					{ name = "lazydev", group_index = 0 },
 				}),
 			}
 		end,
