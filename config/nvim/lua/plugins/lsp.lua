@@ -60,10 +60,11 @@ return {
 				end
 
 				local format = function()
+					local disabled = { cssls = true, lua_ls = true }
 					vim.lsp.buf.format({
 						timeout_ms = 5000,
 						filter = function(client)
-							return client.name ~= "cssls"
+							return not (disabled)[client.name]
 						end,
 					})
 				end
@@ -130,22 +131,35 @@ return {
 	},
 
 	-- Formatters
+	-- {
+	-- 	"jose-elias-alvarez/null-ls.nvim",
+	-- 	event = "BufReadPre",
+	-- 	dependencies = { "mason.nvim" },
+	-- 	opts = function()
+	-- 		local nls = require("null-ls")
+	-- 		return {
+	-- 			sources = {
+	-- 				nls.builtins.formatting.stylua,
+	-- 				nls.builtins.formatting.eslint_d,
+	-- 				nls.builtins.formatting.prettier,
+	-- 				nls.builtins.diagnostics.eslint_d,
+	-- 				nls.builtins.hover.dictionary,
+	-- 			},
+	-- 		}
+	-- 	end,
+	-- },
 	{
-		"jose-elias-alvarez/null-ls.nvim",
-		event = "BufReadPre",
-		dependencies = { "mason.nvim" },
-		opts = function()
-			local nls = require("null-ls")
-			return {
-				sources = {
-					nls.builtins.formatting.stylua,
-					nls.builtins.formatting.eslint_d,
-					nls.builtins.formatting.prettier,
-					nls.builtins.diagnostics.eslint_d,
-					nls.builtins.hover.dictionary,
-				},
-			}
-		end,
+		"stevearc/conform.nvim",
+		opts = {
+			formatters_by_ft = {
+				lua = { "stylua" },
+				javascript = { "eslint_d", "prettier" },
+			},
+			format_on_save = {
+				lsp_format = "fallback",
+				timeout_ms = 500,
+			},
+		},
 	},
 
 	{
