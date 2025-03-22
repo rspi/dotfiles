@@ -19,6 +19,7 @@ return {
 				stylelint_lsp = {},
 				ruff = {},
 				cssls = {},
+				css_variables = {},
 				lua_ls = {
 					settings = {
 						Lua = {
