@@ -37,14 +37,13 @@ return {
 				use_default_keymaps = false,
 				keymaps = {
 					["q"] = { "actions.close", mode = "n" },
-					["<C-f><C-f>"] = { "actions.close", mode = "n" },
 					["<CR>"] = "actions.select",
 					["<C-l>"] = "actions.select",
 					["<C-h>"] = { "actions.parent", mode = "n" },
 					["<C-t>"] = { "actions.select", opts = { tab = true } },
 				},
 			})
-			vim.keymap.set("n", "<C-f><C-f>", ":Oil<CR>", { silent = true, noremap = false })
+			vim.keymap.set("n", "<C-f><C-o>", ":Oil<CR>", { silent = true, noremap = false })
 		end,
 	},
 	{

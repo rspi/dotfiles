@@ -99,7 +99,10 @@ return {
 			vim.list_extend(ensure_installed, tools)
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
+			require("lspconfig").gleam.setup({})
+
 			require("mason-lspconfig").setup({
+				automatic_enable = true,
 				ensure_installed = {}, -- handled by mason-tool-installer
 				automatic_installation = false,
 				handlers = {

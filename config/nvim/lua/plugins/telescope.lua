@@ -54,8 +54,10 @@ return {
 			builtin.grep_string({ search = text })
 		end
 
+		vim.keymap.set("n", "<C-f><C-f>", builtin.resume, { desc = "Telescope resume" })
 		vim.keymap.set("n", "<C-f><C-p>", builtin.find_files, { desc = "Find files" })
 		vim.keymap.set("n", "<C-f><C-g>", custom_pickers.branch_files, { desc = "Find files on branch" })
+		vim.keymap.set("n", "<C-f><C-r>", builtin.live_grep, { desc = "Find with Ripgrep" })
 		vim.keymap.set({ "v" }, "<C-f><C-w>", grep_visual_selection, { desc = "Search current selection" })
 		vim.keymap.set({ "n" }, "<C-f><C-w>", builtin.grep_string, { desc = "Search current word" })
 		vim.api.nvim_create_autocmd("User", { pattern = "TelescopePreviewerLoaded", command = "setlocal number" })
