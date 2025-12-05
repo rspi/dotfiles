@@ -9,43 +9,9 @@ return {
 			vim.cmd("colorscheme licorice")
 		end,
 	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-		main = "nvim-treesitter.configs",
-		branch = "master",
-		lazy = false,
-		opts = {
-			auto_install = true,
-			highlight = { enable = true },
-			indent = { enable = true },
-		},
-	},
 	{ "numToStr/Comment.nvim", config = true },
 	{ "kylechui/nvim-surround", config = true },
 	"editorconfig/editorconfig-vim",
-	{
-		"stevearc/oil.nvim",
-		config = function()
-			require("oil").setup({
-				view_options = {
-					show_hidden = true,
-					is_always_hidden = function(name, bufnr)
-						return name == ".."
-					end,
-				},
-				use_default_keymaps = false,
-				keymaps = {
-					["q"] = { "actions.close", mode = "n" },
-					["<CR>"] = "actions.select",
-					["<C-l>"] = "actions.select",
-					["<C-h>"] = { "actions.parent", mode = "n" },
-					["<C-t>"] = { "actions.select", opts = { tab = true } },
-				},
-			})
-			vim.keymap.set("n", "<C-f><C-o>", ":Oil<CR>", { silent = true, noremap = false })
-		end,
-	},
 	{
 		"rspi/silver.vim",
 		config = function()
