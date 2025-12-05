@@ -30,14 +30,32 @@ return {
 				end,
 			})
 
-			-- Diagnostics
-			vim.fn.sign_define("DiagnosticSignError", { text = "", numhl = "DiagnosticSignError" })
-			vim.fn.sign_define("DiagnosticSignWarn", { text = "", numhl = "DiagnosticWarn" })
-			vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "DiagnosticSignHint" })
-			vim.fn.sign_define("DiagnosticSignInfo", { text = "", numhl = "DiagnosticSignInfo" })
-			vim.diagnostic.config({ virtual_text = false })
-			vim.keymap.set("n", "[c", vim.diagnostic.goto_prev)
-			vim.keymap.set("n", "]c", vim.diagnostic.goto_next)
+			vim.diagnostic.config({
+				virtual_text = false,
+				signs = {
+					active = true,
+					text = {
+						[vim.diagnostic.severity.ERROR] = "",
+						[vim.diagnostic.severity.WARN] = "",
+						[vim.diagnostic.severity.INFO] = "",
+						[vim.diagnostic.severity.HINT] = "",
+					},
+					numhl = {
+						[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+						[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+						[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+						[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+					},
+				},
+			})
+
+			vim.keymap.set("n", "[c", function()
+				vim.diagnostic.jump({ count = -1, float = true })
+			end)
+
+			vim.keymap.set("n", "]c", function()
+				vim.diagnostic.jump({ count = 1, float = true })
+			end)
 
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				callback = function()
@@ -99,7 +117,7 @@ return {
 			vim.list_extend(ensure_installed, tools)
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-			require("lspconfig").gleam.setup({})
+			vim.lsp.enable("gleam")
 
 			require("mason-lspconfig").setup({
 				automatic_enable = true,
@@ -109,7 +127,7 @@ return {
 					function(server_name)
 						local server = servers[server_name] or {}
 						server.capabilities = capabilities
-						require("lspconfig")[server_name].setup(server)
+						vim.lsp.config(server)
 					end,
 				},
 			})

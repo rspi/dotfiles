@@ -53,13 +53,6 @@ function other_symlinks() {
     ln -sf  ~/.dotfiles/config/karabiner.json $file
     e_link "Symlink to $file"
   fi
-
-  file=~/.config/coc/extensions/package.json
-  if ! [ -L $file ]; then
-    mkdir -p ~/.config/coc/extensions/
-    ln -sf  ~/.dotfiles/config/coc-package.json $file
-    e_link "Symlink to $file"
-  fi
 }
 
 sudo -v
