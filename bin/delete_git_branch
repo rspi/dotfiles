@@ -1,0 +1,21 @@
+#!/bin/bash
+
+branch=$(git branch --format='%(refname:short)' | \
+         grep -vE '^(master|main|prod)$' | \
+         fzf --header "Select branch to DELETE (Local & Remote)" --height 40% --reverse)
+
+if [ -z "$branch" ]; then
+    echo "No branch selected. Exiting."
+    exit 0
+fi
+
+read -p "Are you sure you want to delete '$branch' locally and on origin? (y/n): " confirm
+if [[ $confirm != "y" ]]; then
+    echo "Deletion cancelled."
+    exit 0
+fi
+
+echo "Deleting local branch..."
+git branch -D "$branch"
+echo "Deleting remote branch from origin..."
+git push origin --delete "$branch"
