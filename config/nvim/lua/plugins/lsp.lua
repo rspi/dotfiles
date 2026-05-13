@@ -153,6 +153,7 @@ return {
 				javascriptreact = { "eslint_d", "prettier" },
 				html = { "prettier" },
 				scss = { "prettier" },
+				css = { "prettier" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
