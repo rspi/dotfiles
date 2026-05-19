@@ -50,11 +50,7 @@ alias cd='cd -P'
 
 # Neovim Rewrite Alias
 # mkdir -p ~/.local/share/nvim2 ~/.local/state/nvim2
-alias v='XDG_CONFIG_HOME="$HOME/.dotfiles/config" \
-             XDG_DATA_HOME="$HOME/.local/share/nvim2" \
-             XDG_STATE_HOME="$HOME/.local/state/nvim2" \
-             NVIM_APPNAME="nvim2" \
-             nvim'
+alias v='XDG_CONFIG_HOME=$HOME/.dotfiles/config XDG_DATA_HOME="$HOME/.local/share/nvim2" XDG_STATE_HOME="$HOME/.local/state/nvim2" NVIM_APPNAME="nvim2" nvim'
 alias cv='v /Users/rasmuss/.dotfiles/config/nvim2/init.lua'
 
 

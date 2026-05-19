@@ -1,4 +1,3 @@
-
 -- Options
 
 vim.g.mapleader = ","
@@ -27,6 +26,8 @@ vim.opt.linebreak = true
 vim.opt.gdefault = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+require('vim._core.ui2').enable()
 
 -- Keymaps
 
@@ -65,3 +66,10 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("VimResized", {
   callback = function() vim.cmd("wincmd =") end,
 })
+
+
+-- Plugins
+
+vim.pack.add({ "https://github.com/rspi/licorice.vim" })
+vim.cmd.colorscheme('licorice')
+

@@ -1,0 +1,47 @@
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--   callback = function(args)
+--     local bufnr = args.buf
+--     local client = vim.lsp.get_client_by_id(args.data.client_id)
+--
+--     -- Buffer-local options for LSP omnifunc completion
+--     vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
+--
+--     -- Keymaps tailored for buffer-local LSP interactions
+--     local opts = { buffer = bufnr }
+--
+--     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+--     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+--     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+--     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+--     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+--     vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
+--     vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
+--
+--     -- Buffer-local Diagnostics Keymaps
+--     vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+--     vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+--     vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
+--   end,
+-- })
+--
+-- -- 2. Configure global Diagnostic behaviors (Updated for 0.11/0.12 default updates)
+-- vim.diagnostic.config({
+--   virtual_text = true, -- Neovim 0.11 turned this off by default. Flip to true if you like inline text.
+--   severity_sort = true,
+-- })
+--
+-- -- 3. Spawning your first Language Server (Example: Lua Language Server)
+-- if vim.fn.executable("lua-language-server") == 1 then
+--   vim.lsp.start({
+--     name = "lua-ls",
+--     cmd = { "lua-language-server" },
+--     root_dir = vim.fs.root(0, { ".git", "init.lua" }),
+--     settings = {
+--       Lua = {
+--         diagnostics = {
+--           globals = { "vim" },
+--         },
+--       },
+--     },
+--   })
+-- end
